@@ -7,7 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is all about CRUD operation</h1>
-    <h2>Create Update Delete</h2>
+  <form action="/addProduct" method="post">
+      <input type="text" placeholder="name" name="name">
+      <br/>
+      <input type="text" placeholder="price" name="price">
+      <br/>
+      <input type="text" placeholder="quantity" name="quantity">
+      <br/>
+      <button type="submit">Add Product</button>
+     
+
+  </form>
+
+  <div id="product">
+
+  </div>
+
+
+  <script>
+      fetch('/products')
+      .then(res=> res.json())
+      .then(products =>{
+          console.log(products)
+          const container = document.getElementById('product');
+
+          products.forEach(pd =>{
+              const p =document.createElement('p');
+              p.innerHTML = `Name :${pd.name}  price:${pd.price}`;
+              container.appendChild(p);
+              
+          })
+      })
+  </script>
 </body>
 </html>
